@@ -2,22 +2,43 @@ package main
 
 import (
 	"fmt"
-	"go-design-patterns/main/abstractfactory"
+	"main/abstract_factory"
+	"main/builder"
 )
 
 func main() {
 	abstractFactoryTest()
+	builderTest()
+}
+
+func builderTest() {
+	normalBuilder := builder.GetBuilder("normal")
+	iglooBuilder := builder.GetBuilder("igloo")
+
+	director := builder.NewDirector(normalBuilder)
+	normalHouse := director.BuildHouse()
+
+	fmt.Printf("Normal House Door Type: %s\n", normalHouse.DoorType)
+	fmt.Printf("Normal House Window Type: %s\n", normalHouse.WindowType)
+	fmt.Printf("Normal House Num Floor: %d\n", normalHouse.Floor)
+
+	director.SetBuilder(iglooBuilder)
+	iglooHouse := director.BuildHouse()
+
+	fmt.Printf("\nIgloo House Door Type: %s\n", iglooHouse.DoorType)
+	fmt.Printf("Igloo House Window Type: %s\n", iglooHouse.WindowType)
+	fmt.Printf("Igloo House Num Floor: %d\n", iglooHouse.Floor)
 }
 
 func abstractFactoryTest() {
-	adidasFactory, _ := GetSportsFactory("adidas")
-	nikeFactory, _ := GetSportsFactory("nike")
+	adidasFactory, _ := abstractfactory.GetSportsFactory("adidas")
+	nikeFactory, _ := abstractfactory.GetSportsFactory("nike")
 
-	nikeShoe := nikeFactory.makeShoe()
-	nikeShirt := nikeFactory.makeShirt()
+	nikeShoe := nikeFactory.MakeShoe()
+	nikeShirt := nikeFactory.MakeShirt()
 
-	adidasShoe := adidasFactory.makeShoe()
-	adidasShirt := adidasFactory.makeShirt()
+	adidasShoe := adidasFactory.MakeShoe()
+	adidasShirt := adidasFactory.MakeShirt()
 
 	printShoeDetails(nikeShoe)
 	printShirtDetails(nikeShirt)
@@ -27,16 +48,16 @@ func abstractFactoryTest() {
 
 }
 
-func printShoeDetails(s IShoe) {
-	fmt.Printf("Logo: %s", s.getLogo())
+func printShoeDetails(s abstractfactory.IShoe) {
+	fmt.Printf("Logo: %s", s.GetLogo())
 	fmt.Println()
-	fmt.Printf("Size: %d", s.getSize())
+	fmt.Printf("Size: %d", s.GetSize())
 	fmt.Println()
 }
 
-func printShirtDetails(s IShirt) {
-	fmt.Printf("Logo: %s", s.getLogo())
+func printShirtDetails(s abstractfactory.IShirt) {
+	fmt.Printf("Logo: %s", s.GetLogo())
 	fmt.Println()
-	fmt.Printf("Size: %d", s.getSize())
+	fmt.Printf("Size: %d", s.GetSize())
 	fmt.Println()
 }

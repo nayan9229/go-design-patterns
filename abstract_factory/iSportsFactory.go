@@ -7,8 +7,8 @@ package abstractfactory
 import "fmt"
 
 type ISportsFactory interface {
-	makeShoe() IShoe
-	makeShirt() IShirt
+	MakeShoe() IShoe
+	MakeShirt() IShirt
 }
 
 func GetSportsFactory(brand string) (ISportsFactory, error) {

@@ -7,7 +7,7 @@ package abstractfactory
 type Adidas struct {
 }
 
-func (a *Adidas) makeShoe() IShoe {
+func (a *Adidas) MakeShoe() IShoe {
 	return &AdidasShoe{
 		Shoe: Shoe{
 			logo: "adidas",
@@ -16,7 +16,7 @@ func (a *Adidas) makeShoe() IShoe {
 	}
 }
 
-func (a *Adidas) makeShirt() IShirt {
+func (a *Adidas) MakeShirt() IShirt {
 	return &AdidasShirt{
 		Shirt: Shirt{
 			logo: "adidas",

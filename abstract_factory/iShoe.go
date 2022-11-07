@@ -4,10 +4,10 @@ Abstract product
 package abstractfactory
 
 type IShoe interface {
-	setLogo(logo string)
-	setSize(size int)
-	getLogo() string
-	getSize() int
+	SetLogo(logo string)
+	SetSize(size int)
+	GetLogo() string
+	GetSize() int
 }
 
 type Shoe struct {
@@ -15,18 +15,18 @@ type Shoe struct {
 	size int
 }
 
-func (s *Shoe) setLogo(logo string) {
+func (s *Shoe) SetLogo(logo string) {
 	s.logo = logo
 }
 
-func (s *Shoe) getLogo() string {
+func (s *Shoe) GetLogo() string {
 	return s.logo
 }
 
-func (s *Shoe) setSize(size int) {
+func (s *Shoe) SetSize(size int) {
 	s.size = size
 }
 
-func (s *Shoe) getSize() int {
+func (s *Shoe) GetSize() int {
 	return s.size
 }
